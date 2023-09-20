@@ -19,29 +19,6 @@ from palmerpenguins import load_penguins
 penguins = load_penguins()
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|     | species | island    | bill_length_mm | bill_depth_mm | flipper_length_mm | body_mass_g | sex    | year |
-|-----|---------|-----------|----------------|---------------|-------------------|-------------|--------|------|
-| 0   | Adelie  | Torgersen | 39.1           | 18.7          | 181.0             | 3750.0      | male   | 2007 |
-| 1   | Adelie  | Torgersen | 39.5           | 17.4          | 186.0             | 3800.0      | female | 2007 |
-| 2   | Adelie  | Torgersen | 40.3           | 18.0          | 195.0             | 3250.0      | female | 2007 |
-| 3   | Adelie  | Torgersen | NaN            | NaN           | NaN               | NaN         | NaN    | 2007 |
-| 4   | Adelie  | Torgersen | 36.7           | 19.3          | 193.0             | 3450.0      | female | 2007 |
-
-</div>
-
 ### You can use holopheno to easily visualize scatters of individual data points in the chosen dimensions
 
 To do that, you need to first tell indicate which are the independent
@@ -70,36 +47,6 @@ penguins_h = holopheno.read_data(penguins, X = x_columns, Y = y_columns)
     unique species values ['Adelie' 'Gentoo' 'Chinstrap']
     unique island values ['Torgersen' 'Biscoe' 'Dream']
     unique sex values ['male' 'female']
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|     | species   | island    | sex    | bill_length_mm | bill_depth_mm | bill_depth_mm | body_mass_g |
-|-----|-----------|-----------|--------|----------------|---------------|---------------|-------------|
-| 0   | Adelie    | Torgersen | male   | -0.896042      | 0.780732      | 0.780732      | -0.568475   |
-| 1   | Adelie    | Torgersen | female | -0.822788      | 0.119584      | 0.119584      | -0.506286   |
-| 2   | Adelie    | Torgersen | female | -0.676280      | 0.424729      | 0.424729      | -1.190361   |
-| 3   | Adelie    | Torgersen | female | -1.335566      | 1.085877      | 1.085877      | -0.941606   |
-| 4   | Adelie    | Torgersen | male   | -0.859415      | 1.747026      | 1.747026      | -0.692852   |
-| ... | ...       | ...       | ...    | ...            | ...           | ...           | ...         |
-| 328 | Chinstrap | Dream     | male   | 2.162314       | 1.340165      | 1.340165      | -0.257532   |
-| 329 | Chinstrap | Dream     | female | -0.090248      | 0.475587      | 0.475587      | -1.003795   |
-| 330 | Chinstrap | Dream     | male   | 1.026876       | 0.526444      | 0.526444      | -0.537380   |
-| 331 | Chinstrap | Dream     | male   | 1.246638       | 0.933305      | 0.933305      | -0.133155   |
-| 332 | Chinstrap | Dream     | female | 1.136757       | 0.780732      | 0.780732      | -0.537380   |
-
-<p>333 rows × 7 columns</p>
-</div>
 
 ### `.scatter()` gives you some scatter plots, either in raw metric values or z-scores (scaled)
 
