@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "holopheno"
+  site-url: "https://sangyu.github.io/holopheno"
+  description: "a holophenotype"
+  repo-branch: main
+  repo-url: "https://github.com/sangyu/holopheno"

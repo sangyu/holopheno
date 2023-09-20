@@ -1,0 +1,8 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - classes.ipynb
+      - init.ipynb
+      - plot_tools.ipynb
+      - read_data.ipynb
