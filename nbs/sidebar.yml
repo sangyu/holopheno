@@ -3,6 +3,7 @@ website:
     contents:
       - index.ipynb
       - PCA Analysis.ipynb
+      - Visualising the data.ipynb
       - classes.ipynb
       - init.ipynb
       - plot_tools.ipynb
