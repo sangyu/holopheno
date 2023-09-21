@@ -38,7 +38,7 @@ y_columns = [
 ### `.read_data()` loads the data and gives you some basic info about the data
 
 ``` python
-penguins_h = holopheno.read_data(penguins, X = x_columns, Y = y_columns)
+penguins_h = holopheno.read_data(penguins, x = x_columns, y = y_columns)
 ```
 
     Data info: 
@@ -52,6 +52,7 @@ penguins_h = holopheno.read_data(penguins, X = x_columns, Y = y_columns)
 
 ``` python
 penguins_h.scatter('bill_length_mm', 'body_mass_g', group_by = 'species', type = 'raw');
+# penguins_h.scatter('bill_length_mm', 'body_mass_g', group_by = 'species', type = 'scaled');
 ```
 
     Plotting for the conditions species:
@@ -61,22 +62,28 @@ penguins_h.scatter('bill_length_mm', 'body_mass_g', group_by = 'species', type =
 
 ![](index_files/figure-commonmark/cell-5-output-2.png)
 
-``` python
-penguins_h.scatter('bill_length_mm', 'body_mass_g', group_by = 'species', type = 'scaled');
-```
-
-    Plotting for the conditions species:
-    Adelie
-    Gentoo
-    Chinstrap
-
-![](index_files/figure-commonmark/cell-6-output-2.png)
-
 ### `.scatter_3d` gives you a 3D interactive view
 
 ``` python
 palette = {'Adelie': 'orangered', 'Gentoo': 'steelblue', 'Chinstrap': 'seagreen'}
-penguins_h.scatter_3d(['bill_length_mm', 'bill_depth_mm', 'body_mass_g'], color_by = 'species', palette = palette, type = 'raw');
+f = penguins_h.scatter_3d(['bill_length_mm', 'bill_depth_mm', 'body_mass_g'], color_by = 'species', palette = palette, type = 'raw');
+```
+
+![](index_files/figure-commonmark/cell-6-output-1.png)
+
+``` python
+pca, f = penguins_h.dim_red_by_pca()
+
+pca = penguins_h.dim_red_by_pca(n_components = 3, plot_variance_explained= False)
+penguins_h.transform_with_pca(pca)
 ```
 
 ![](index_files/figure-commonmark/cell-7-output-1.png)
+
+``` python
+# %matplotlib widget
+palette = {'Adelie': 'orangered', 'Gentoo': 'steelblue', 'Chinstrap': 'seagreen'}
+f1 = penguins_h.scatter_3d(['PC1', 'PC2', 'PC3'], color_by = 'species', palette = palette, type = 'scaled');
+```
+
+![](index_files/figure-commonmark/cell-8-output-1.png)

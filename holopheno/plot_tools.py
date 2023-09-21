@@ -17,7 +17,7 @@ def scatter_with_ellipse(data, x, y, group_by):
             print(conditions[i])
             datasets.append(data.loc[data[group_by]==conditions[i]])
         
-        fig, axes = plt.subplots( 1, len(datasets), figsize = [ 5+ 5*len(conditions), 7])
+        fig, axes = plt.subplots( 1, len(datasets), figsize = [ 3+ 3*len(conditions), 3])
     
         # for i in axes:
         #     i.set_ylim(-0.2, 1.5)
@@ -26,7 +26,7 @@ def scatter_with_ellipse(data, x, y, group_by):
             scale = regscatter(datasets[i], x = x, y = y, ax = axes[i], color = 'k')
             # angles = plot_eigen_vectors(datasets[i], x = x, y = y, ax = axes[i], scale = scale, plot_vs = [0], aspect = None)
     else:
-        fig, axes = plt.subplots(1, 1, figsize = [5, 5])
+        fig, axes = plt.subplots(1, 1, figsize = [3, 3])
         scale = regscatter(data, x = x, y = y, ax = axes, color = 'k')
         # angles = plot_eigen_vectors(data, x = x, y = y, ax = axes, scale = scale, plot_vs = [0], aspect = None)
     fig.tight_layout()
@@ -150,7 +150,7 @@ def plot_3d_scatter(data, metrics, color_by, palette):
         ax.scatter(data[metrics[0]], data[metrics[1]], data[metrics[2]], color = [palette[i] for i in data[color_by]])
     else:
         ax.scatter(data[metrics[0]], data[metrics[1]], data[metrics[2]])
-    f_scatter_3d.show()
+    # f_scatter_3d.show()
     return f_scatter_3d
 
 

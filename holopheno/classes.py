@@ -30,7 +30,7 @@ class HoloPheno(object):
     Class for visualizing behavior data in reduced dimensions.
     """
 
-    def __init__(self, data, X = None, Y = None):
+    def __init__(self, data, x = None, y = None):
         """
 
         Reads and stores information from 
@@ -47,17 +47,17 @@ class HoloPheno(object):
         import pandas as pd
         from holopheno.plot_tools import scale_with_columns
         self.data_in = data.dropna().reset_index(drop = True).copy()
-        self.X = X
-        self.Y = Y
+        self.x = x
+        self.y = y
         self.summarize() 
-        self.scaled_data = pd.concat([self.data_in[X], scale_with_columns(self.data_in[Y])], axis = 1)
+        self.scaled_data = pd.concat([self.data_in[x], scale_with_columns(self.data_in[y])], axis = 1)
         
     def summarize(self):
 
         self.summary = {}
         self.summary['sample_size'] = len(self.data_in)
-        if self.X:
-            for x in self.X:
+        if self.x:
+            for x in self.x:
                 self.summary['unique ' + x + ' values'] = self.data_in[x].unique()
         print('Data info: \n')
         for i, (k, v) in enumerate(self.summary.items()):
@@ -77,5 +77,39 @@ class HoloPheno(object):
             data = self.data_in
         elif type == 'scaled':
             data = self.scaled_data
-        plot_3d_scatter(data, metrics, color_by, palette)
-        
+        f_3d = plot_3d_scatter(data, metrics, color_by, palette)
+        return f_3d
+
+    def dim_red_by_pca(self, n_components = None, plot_variance_explained = True):
+        data = self.scaled_data[self.y]
+        def fit_pca(data = data, n_components =  n_components):
+            from sklearn.decomposition import PCA
+            if n_components is None:
+                n_components = len(data.columns)
+            pca = PCA(n_components = n_components)
+            pca.fit(data)
+            return pca
+        def plot_pca_exp_var(pca):
+            import matplotlib.pyplot as plt
+            f = plt.figure
+            plt.plot(range(1, pca.n_components+1), pca.explained_variance_ratio_.cumsum(), marker = 'o', linestyle = '-')
+            plt.title('Explained Variance by Components')
+            plt.xlabel('Number of Components')
+            plt.ylabel('Cumulative Explained Variance')
+            return f
+        pca = fit_pca(data = data, n_components = n_components)
+        if plot_variance_explained == True:
+            f = plot_pca_exp_var(pca)
+            return pca, f
+        else:
+            return pca
+
+    def transform_with_pca(self, pca):  
+        import pandas as pd
+        data = self.scaled_data[self.y]
+        scores = pca.transform(data)
+        PCs = pd.DataFrame()
+        for i in range(scores.shape[1]):   
+            PCs.insert(i, 'PC'+str(i+1), scores[:, i])
+        self.scaled_data = pd.concat([self.scaled_data.drop(columns = list(self.scaled_data.filter(regex='PC'))), PCs], axis = 1)
+

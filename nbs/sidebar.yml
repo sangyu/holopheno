@@ -2,6 +2,7 @@ website:
   sidebar:
     contents:
       - index.ipynb
+      - PCA Analysis.ipynb
       - classes.ipynb
       - init.ipynb
       - plot_tools.ipynb

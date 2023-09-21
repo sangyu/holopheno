@@ -4,8 +4,8 @@
 __all__ = ['read_data']
 
 # %% ../nbs/read_data.ipynb 3
-def read_data(data, X = None, Y = None):
+def read_data(data, x = None, y = None):
     from .classes import HoloPheno
-    holo_obj = HoloPheno(data, X, Y)
+    holo_obj = HoloPheno(data, x, y)
     return holo_obj
 
