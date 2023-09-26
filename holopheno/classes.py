@@ -85,7 +85,7 @@ class HoloPheno(object):
         def fit_pca(data = data, n_components =  n_components):
             from sklearn.decomposition import PCA
             if n_components is None:
-                n_components = len(data.columns)
+                n_components = len(self.y)
             pca = PCA(n_components = n_components)
             pca.fit(data)
             return pca
@@ -103,6 +103,22 @@ class HoloPheno(object):
             return pca, f
         else:
             return pca
+    
+    def heatmap_zscore(self, group_by, fig_size = None, ax = None, heatmap_kwargs = {'cmap': 'vlag'}, type = 'scaled' ):
+        from holopheno.plot_tools import plot_heatmap
+
+        if type == 'raw':
+            data = self.data_in
+        elif type == 'scaled':
+            data = self.scaled_data
+        if ax == None:
+            plot_heatmap(data, group_by, fig_size = fig_size, ax = ax)
+        else:
+            self.zscore_heatmap = plot_heatmap(data, group_by, fig_size = fig_size, ax = ax)
+
+    
+    # def corr_matrix_heatmap():
+        
 
     def transform_with_pca(self, pca):  
         import pandas as pd
@@ -112,4 +128,5 @@ class HoloPheno(object):
         for i in range(scores.shape[1]):   
             PCs.insert(i, 'PC'+str(i+1), scores[:, i])
         self.scaled_data = pd.concat([self.scaled_data.drop(columns = list(self.scaled_data.filter(regex='PC'))), PCs], axis = 1)
+
 

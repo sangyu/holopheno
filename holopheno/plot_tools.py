@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['scatter_with_ellipse', 'confidence_ellipse', 'regscatter', 'unit_vector', 'angle_between', 'plot_3d_scatter',
-           'setFont', 'scale_with_columns', 'generate_x_y_dist']
+           'plot_heatmap', 'setFont', 'scale_with_columns', 'generate_x_y_dist']
 
 # %% ../nbs/plot_tools.ipynb 3
 def scatter_with_ellipse(data, x, y, group_by):
@@ -153,6 +153,17 @@ def plot_3d_scatter(data, metrics, color_by, palette):
     # f_scatter_3d.show()
     return f_scatter_3d
 
+def plot_heatmap(data, group_by, fig_size = None, ax = None, heatmap_kwargs = {'cmap': 'vlag'} ):
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    if fig_size == None:
+        fig_size = (3, 2)
+    if ax == None:
+        f_heatmap_zscore = plt.figure()
+    sns.heatmap(data.groupby(group_by).mean(), ax = ax, **heatmap_kwargs)
+    if f_heatmap_zscore:
+        f_heatmap_zscore.set_size_inches(fig_size)
+        return f_heatmap_zscore
 
 
 # %% ../nbs/plot_tools.ipynb 5
