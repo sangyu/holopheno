@@ -8,10 +8,20 @@ format:
     toc: true
 
 website:
+  title: "holopheno"
+  site-url: "https://sangyu.github.io/holopheno/"
+  description: "Dimension Reduction and Visualisation for Multi-variate Data"
   twitter-card: true
   open-graph: true
+  repo-branch: master
+  repo-url: "https://github.com/sangyu/holopheno"
   repo-actions: [issue]
   navbar:
+    right:
+      - icon: github
+        href: https://github.com/sangyu/holopheno
+      - icon: twitter
+        href: https://twitter.com/xusangyu
     background: primary
     search: true
   sidebar:
