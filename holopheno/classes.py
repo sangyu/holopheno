@@ -104,19 +104,20 @@ class HoloPheno(object):
         else:
             return pca
     
-    def heatmap_zscore(self, group_by, fig_size = None, ax = None, heatmap_kwargs = {'cmap': 'vlag'}, type = 'scaled' ):
+    def heatmap_zscore(self, group_by, fig_size = None, ax = None, heatmap_kwargs = {'cmap': 'vlag'}, type = 'scaled',  plot_clustermap = False, clustermap_kwargs={'cmap': 'vlag'}):
         from holopheno.plot_tools import plot_heatmap
 
         if type == 'raw':
             data = self.data_in
         elif type == 'scaled':
             data = self.scaled_data
-        if ax == None:
-            plot_heatmap(data, group_by, fig_size = fig_size, ax = ax)
+        data_num = pd.concat([data[group_by], data.select_dtypes(include=np.number)], axis = 1)
+        if plot_clustermap:
+            plot_heatmap(data_num, group_by, fig_size = fig_size, ax = ax, heatmap_kwargs = heatmap_kwargs, plot_clustermap = plot_clustermap, clustermap_kwargs = clustermap_kwargs)
+        elif ax == None:
+            self.zscore_heatmap = plot_heatmap(data_num, group_by, fig_size = fig_size, ax = ax, heatmap_kwargs = heatmap_kwargs, plot_clustermap = plot_clustermap, clustermap_kwargs = clustermap_kwargs)
         else:
-            self.zscore_heatmap = plot_heatmap(data, group_by, fig_size = fig_size, ax = ax)
-
-    
+            plot_heatmap(data_num, group_by, fig_size = fig_size, ax = ax, heatmap_kwargs = heatmap_kwargs, plot_clustermap = plot_clustermap, clustermap_kwargs = clustermap_kwargs)
     # def corr_matrix_heatmap():
         
 

@@ -153,18 +153,43 @@ def plot_3d_scatter(data, metrics, color_by, palette):
     # f_scatter_3d.show()
     return f_scatter_3d
 
-def plot_heatmap(data, group_by, fig_size = None, ax = None, heatmap_kwargs = {'cmap': 'vlag'} ):
+def plot_heatmap(data, group_by = None, fig_size = None, ax = None, heatmap_kwargs = {'cmap': 'vlag'} , plot_clustermap = False, clustermap_kwargs={'cmap': 'vlag'}):
     import seaborn as sns
     import matplotlib.pyplot as plt
-    if fig_size == None:
-        fig_size = (3, 2)
-    if ax == None:
-        f_heatmap_zscore = plt.figure()
-    sns.heatmap(data.groupby(group_by).mean(), ax = ax, **heatmap_kwargs)
-    if f_heatmap_zscore:
-        f_heatmap_zscore.set_size_inches(fig_size)
-        return f_heatmap_zscore
+    f_heatmap = None
+    f_clustermap = None
 
+    fig_size = (3, 6)        
+    if ax == None and plot_clustermap == False:
+        f_heatmap = plt.figure()
+        plt.xticks(rotation = 50)
+    if group_by == None:
+        if plot_clustermap:
+            fig_size = data.shape
+            clustermap_kwargs['figsize'] = fig_size
+            f_clustermap = sns.clustermap(data, **clustermap_kwargs)
+        else:
+            sns.heatmap(data, ax = ax, **heatmap_kwargs)
+            fig_size = data.mean().shape
+
+    else:
+        if plot_clustermap:
+            fig_size = data.groupby(group_by).mean().shape
+            clustermap_kwargs['figsize'] = fig_size
+            f_clustermap = sns.clustermap(data.groupby(group_by).mean(), **clustermap_kwargs)
+        else:
+            sns.heatmap(data.groupby(group_by).mean(), ax = ax, **heatmap_kwargs)
+            fig_size = data.groupby(group_by).mean().shape
+
+    if ax:
+        ax.set_xticklabels(ax.get_xticks(), rotation = 50)
+
+    if f_heatmap:
+        f_heatmap.set_size_inches(fig_size)
+        return f_heatmap
+        
+    if f_clustermap:
+        return f_clustermap
 
 # %% ../nbs/API/plot_tools.ipynb 5
 def setFont(fontSelection, fontSize, fontWeight = 'normal'):

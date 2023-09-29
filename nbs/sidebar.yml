@@ -13,3 +13,4 @@ website:
           - Tutorials/00_Reading Data.ipynb
           - Tutorials/01_Visualising the data.ipynb
           - Tutorials/02_PCA Analysis.ipynb
+          - Tutorials/03_Applying to Effect Sizes.ipynb
