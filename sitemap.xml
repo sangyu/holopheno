@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sangyu.github.io/holopheno/API/init.html</loc>
+    <lastmod>2023-09-29T03:10:17.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/API/read_data.html</loc>
+    <lastmod>2023-09-29T03:10:16.950Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/index.html</loc>
+    <lastmod>2023-09-29T03:10:16.302Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/Tutorials/pca analysis.html</loc>
+    <lastmod>2023-09-29T03:10:15.169Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/Tutorials/visualising the data.html</loc>
+    <lastmod>2023-09-29T03:10:12.649Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/Tutorials/applying to effect sizes.html</loc>
+    <lastmod>2023-09-29T03:10:14.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/Tutorials/reading data.html</loc>
+    <lastmod>2023-09-29T03:10:15.638Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/API/classes.html</loc>
+    <lastmod>2023-09-29T03:10:16.626Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sangyu.github.io/holopheno/API/plot_tools.html</loc>
+    <lastmod>2023-09-29T03:10:17.354Z</lastmod>
+  </url>
+</urlset>
